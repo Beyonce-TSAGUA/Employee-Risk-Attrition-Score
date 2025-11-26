@@ -1,38 +1,184 @@
-Employee Risk Score - HR Predictive Analytics
-📌 Contexte
+# 🧠 Employee Risk & Attrition Score
 
-Ce projet vise à anticiper le risque d’attrition des employés à partir de données RH en combinant machine learning et analyse métier.
+> 🎯 Projet de Data Science appliqué au pilotage RH dans un contexte Assurance / Banque
 
-🎯 Objectif
+---
 
-Créer un score de risque permettant d’identifier les employés nécessitant une attention managériale prioritaire.
+## 📌 Objectif du projet
 
-🧠 Méthodologie
+Anticiper le risque RH à travers un **Employee Risk Score intelligent**, capable de prédire :
 
-Nettoyage et preprocessing des données
+* Le risque d’attrition (départ volontaire)
+* Le risque d’absentéisme
+* La baisse de performance
+* L’insatisfaction globale
 
-Feature engineering basé sur la logique métier
+👉 Finalité métier : permettre aux décideurs RH d’intervenir AVANT que la situation ne dégénère.
 
-Modélisation via :
+Ce projet s’inscrit dans une logique proactive, orientée performance humaine et durabilité sociale.
 
-Logistic Regression (baseline)
+---
 
-Random Forest
+## 🗂️ Données utilisées
 
-XGBoost (meilleure performance)
+Fichier principal :
 
-Interprétabilité via SHAP
+```
+data/employee_risk_attrition_dirty.csv
+```
 
-📊 Résultats
+Variables clés exploitées :
 
-Amélioration significative de la détection des profils à risque
+* age
+* tenure_years
+* salary
+* satisfaction_level
+* performance_score
+* absenteeism_days
+* overtime_hours
+* manager_rating
+* job_role
+* attrition (cible)
 
-Mise en évidence de l’impact de la satisfaction et du management
+Les données ont été volontairement salies (valeurs manquantes, anomalies) pour simuler un contexte réel d’entreprise.
 
-🛠 Technologies
+---
 
-Python, Pandas, Scikit-learn, Seaborn, XGBoost, SHAP
+## ⚙️ Déroulé méthodologique
 
-✅ Conclusion
+### 1. Data Understanding
 
-La data permet de détecter les signaux faibles avant qu’ils ne deviennent des ruptures humaines.
+* Analyse du schéma des données
+* Identification des variables numériques et catégorielles
+
+### 2. Data Cleaning
+
+* Gestion des valeurs manquantes via flags
+* Détection des valeurs hors logique métier
+
+### 3. Feature Engineering
+
+* Création de ratios
+* Scores composites
+* Encodage des variables catégorielles
+
+### 4. Modélisation
+
+Trois modèles testés :
+
+* Logistic Regression (baseline)
+* Random Forest
+* XGBoost ✅ (meilleur modèle retenu)
+
+Métriques utilisées :
+
+* Accuracy
+* F1-score
+* ROC-AUC
+
+### 5. Explainability
+
+* Feature Importance
+* SHAP Values
+
+### 6. Création du Employee Risk Score
+
+Score final combinant :
+
+```
+Risk Score = f(Attrition + Absentéisme + Performance + Satisfaction)
+```
+
+---
+
+## 📊 Résultats clés
+
+* XGBoost surpasse les autres modèles en précision et stabilité
+* Variables les plus influentes :
+
+  * satisfaction_level
+  * absenteeism_days
+  * performance_score
+  * overtime_hours
+
+Visualisations disponibles :
+
+* Heatmap de corrélation
+* Courbe ROC
+* Feature importance
+* Distribution des scores de risque
+
+---
+
+## 🧪 Comment exécuter le projet ?
+
+### Prérequis
+
+Python 3.9+
+
+Installer les dépendances :
+
+```bash
+pip install -r requirements.txt
+```
+
+Lancer le notebook :
+
+```bash
+jupyter notebook employee_risk_score.ipynb
+```
+
+---
+
+## 🧩 Structure du projet
+
+```
+Employee-Risk-Score/
+│
+├── notebook.ipynb
+├── README.md
+├── data/
+│   ├── employee_risk_attrition_dirty.csv
+│   └── employee_risk_clean.csv
+├── models/
+│   └── rl_model.pkl
+│   └── rf_model.pkl
+│   └── xgb_model.pkl
+```
+
+---
+
+## 🏢 Applications métiers
+
+✅ Détection préventive des collaborateurs à risque
+✅ Orientation RH ciblée (formation, coaching, charge de travail)
+✅ Aide à la décision pour managers et DRH
+
+---
+
+## 🚧 Limites & perspectives
+
+Limites actuelles :
+
+* Données simulées
+* Absence de données comportementales fines
+
+Améliorations futures :
+
+* Intégration NLP (analyse de feedbacks employés)
+* Dashboard interactif Streamlit / Power BI
+* Automatisation via API
+
+---
+
+## 🚀 Vision
+
+Ce projet illustre la transition d’une gestion RH réactive vers une gouvernance prédictive basée sur la performance humaine et la donnée car la technologie ne remplace pas l’humain, elle l’éclaire.
+
+---
+
+## 👨‍💻 Auteur
+
+Projet réalisé dans un objectif de montée en compétences en Data Science RH & Business Intelligence.
+
+---
